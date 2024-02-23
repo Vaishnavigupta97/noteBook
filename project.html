@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+</head>
+
+<body>
+    <h1>Todos Name</h1>
+    <input id="title" type="text" name="title" placeholder="title" />
+    <input id="discription" type="text" name="discription" placeholder="discription" />
+    <button id="formSubmit">Submit</button>
+    <ul id="nameList"></ul>
+    <h1>Todos Donessssssssssssss</h1>
+    <ul id="secondTodoList"></ul>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script> -->
+    <script>
+        let title = document.getElementById("title").value;
+        let discription = document.getElementById("discription").value;
+        let nameList = document.getElementById("nameList");
+        let secondTodoList = document.getElementById("secondTodoList");
+        let list = document.createElement("li");
+        let done = document.createElement("button");
+        let cross = document.createElement("button");
+        
+
+        document.getElementById("formSubmit").addEventListener("click", TodosSubmit);
+
+        function TodosSubmit(event) {
+            event.preventDefault();
+            let title = document.getElementById("title").value;
+            let discription = document.getElementById("discription").value;
+            let nameList = document.getElementById("nameList");
+            let newObjectes = {
+                title,
+                discription
+            }
+            // create List 
+            nameList.appendChild(list);
+            list.innerHTML = `${title}, ${discription}`;
+            // create done button 
+            done.innerHTML = "Done";
+            list.appendChild(done);
+            // create cross button 
+            cross.innerHTML = "X";
+            list.appendChild(cross);
+            // async function pstTodos() {
+            //     try {
+            //         const response1 = await axios.post('https://crudcrud.com/api/70fb82d5c504459e99321a33789a9cd8/showTodos', newObjectes)
+            //         addTodosList(response1.data);
+            //     } catch (error) {
+            //         alert(error);
+            //     }
+            // }
+            // pstTodos();
+            // addTodosList();
+        }
+
+        done.addEventListener("click", submitListItem);
+        function submitListItem(){
+            done.parentElement.remove();
+            secondTodoList.appendChild(list);
+            done.remove();            
+        }
+
+        cross.addEventListener("click", deleteListItem);
+
+        function deleteListItem(){
+            done.parentElement.remove();
+        }
+
+      
+        // const addTodosList = (element) => {
+
+        // }
+
+        // window.addEventListener(("DOMContentLoaded"), loadFunc);
+
+        // async function loadFunc() {
+        //     try {
+        //         const response1 = await axios.get('https://crudcrud.com/api/70fb82d5c504459e99321a33789a9cd8/showTodos')
+        //         for (let i = 0; i < response1.data.length; i++) {
+        //             addTodosList(response1.data[i]);
+        //         }
+        //     } catch (error) {
+        //         alert(error);
+        //     }
+        // }
+    </script>
+</body>
+
+</html>
